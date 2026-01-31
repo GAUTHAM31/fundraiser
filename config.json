@@ -1,0 +1,203 @@
+{
+  "heading": {
+    "logo": "images/UI_Logo_Red.png",
+    "title": "2025 Impact Report",
+    "subtitle": "U&I Trivandrum",
+    "description": "What we did with last year's fundraiser",
+    "tagline": "Scroll to see the full story"
+  },
+  "content": [
+    {
+      "type": "image",
+      "src": "images/3-new-centers.png",
+      "title": "Our 4 Centers",
+      "description": "4 centers across Trivandrum — 60→140 students (2× growth), 65→151 volunteers, 75→117 classes"
+    },
+    {
+      "type": "video",
+      "src": "images/student-kit.mp4",
+      "title": "Student Kit for Every Child",
+      "description": "Geometry box, notes, drawing book, coloring box, pen, pencil and other important things — we bought kits for 150+ students, giving them tools just like other students"
+    },
+    {
+      "type": "image",
+      "src": "images/onam-celebration-new.png",
+      "title": "Onam Celebration",
+      "description": "We celebrated with them through cultural programs, games, and food"
+    },
+    {
+      "type": "image",
+      "src": "images/xmas-celebration.png",
+      "title": "Christmas Celebration",
+      "description": "We gifted kids with personalised gifts for each of them, bringing the Christmas spirit"
+    },
+    {
+      "type": "image",
+      "src": "images/activity-oct-27-2025-01.jpeg",
+      "title": "Celebrating Together",
+      "description": "Celebrated Onam, Children's Day, and Christmas with joy and laughter"
+    },
+    {
+      "type": "image",
+      "src": "images/activity-oct-27-2025-02.jpeg",
+      "title": "Essentials Campaign",
+      "description": "Successfully organized campaign to support students with their basic needs"
+    },
+    {
+      "type": "image",
+      "src": "images/donation-drive.png",
+      "title": "Donation Drive",
+      "description": "Giving center essentials like bathing soap, detergent soap, and crowd-sourced new clothes and pre-loved dresses for the kids"
+    },
+    {
+      "type": "image",
+      "src": "images/health-bingo.png",
+      "title": "Hygiene Kit for Every Child",
+      "description": "We supplied a basic hygiene kit for each kid — brush, tongue cleaner, nail cutter, combo and other essentials. We gamified it in a bingo format so kids use it as a habit."
+    },
+    {
+      "type": "image",
+      "src": "images/workshop-on-computer-for-kids.jpeg",
+      "title": "Computer Workshop",
+      "description": "Conducted computer workshop for kids to build digital skills"
+    },
+    {
+      "type": "image",
+      "src": "images/activity-nov-13-2025-01.jpeg",
+      "title": "CMS Center Renovation",
+      "description": "Completed renovation creating a brighter, safer learning environment"
+    },
+    {
+      "type": "image",
+      "src": "images/cms-fans-lights.jpeg",
+      "title": "Fans & Lights at CMS",
+      "description": "Fans and lights we bought for the center — the study hall lacked good air circulation and lighting"
+    },
+    {
+      "type": "image",
+      "src": "images/projector-cms.jpeg",
+      "title": "Projector at CMS",
+      "description": "Helping students learn with multimedia and screening English movies"
+    },
+    {
+      "type": "image",
+      "src": "images/uandi-books-library.png",
+      "title": "Books & Library",
+      "description": "Books curated by U&I for teaching English based on student's level; we set up a small library with story books and Labor India subscription for higher education students"
+    },
+    {
+      "type": "image",
+      "src": "images/counselling-kids.png",
+      "title": "Student Counselling",
+      "description": "Provided counselling at Jayamatha and CMS with continued support ongoing"
+    },
+    {
+      "type": "image",
+      "src": "images/activity-nov-16-2025-01.jpeg",
+      "title": "Physical Fitness",
+      "description": "Installed goal post to promote fitness, teamwork, and confidence"
+    },
+    {
+      "type": "image",
+      "src": "images/sports-games.png",
+      "title": "Sports & Games Tournament",
+      "description": "Tournament we hosted last year for kids. We bought new equipment for cricket and caroms to increase play time and support their mental health"
+    },
+    {
+      "type": "image",
+      "src": "images/activity-nov-16-2025-02.jpeg",
+      "title": "STEM Experiments",
+      "description": "Conducted hands-on experiments to spark curiosity and innovation"
+    },
+    {
+      "type": "image",
+      "src": "images/stem-workshop.jpeg",
+      "title": "STEM Workshop",
+      "description": "Hands-on STEM workshop for kids to explore science, technology, engineering and math"
+    },
+    {
+      "type": "image",
+      "src": "images/ardunio-workshop.png",
+      "title": "Arduino Workshop",
+      "description": "Arduino workshop introducing kids to electronics and coding"
+    },
+    {
+      "type": "image",
+      "src": "images/activity-nov-16-2025-03.jpeg",
+      "title": "Interactive Learning",
+      "description": "Introduced fun knowledge games to make learning exciting and engaging"
+    },
+    {
+      "type": "image",
+      "src": "images/board-games.png",
+      "title": "Board Games for Learning",
+      "description": "Kids playing board games that help with English and educational thinking — Rapid Rumble, Word Power, Chain Letters, Spot It and more to learn in a fun way. Popular among kids!"
+    },
+    {
+      "type": "image",
+      "src": "images/activity-nov-17-2025-01.jpeg",
+      "title": "Building Relationships",
+      "description": "Understanding each child's dreams and nurturing their strengths"
+    },
+    {
+      "type": "video",
+      "src": "images/video-dec-02-2025-01.mp4",
+      "title": "Our Growth",
+      "description": "From 60 to 140 students — more than 2x growth in one year"
+    },
+    {
+      "type": "image",
+      "src": "images/activity-dec-02-2025-01.jpeg",
+      "title": "Community Strength",
+      "description": "151 volunteers and 117 classes — incredible community support"
+    },
+    {
+      "type": "image",
+      "src": "images/assessment.png",
+      "title": "Tracking Progress",
+      "description": "We keep track of each student's progress — from mapping them to the correct level and identifying knowledge gaps to mid- and final progress of every child"
+    },
+    {
+      "type": "image",
+      "src": "images/activity-jan-07-2026-01.jpeg",
+      "title": "Academic Success",
+      "description": "21.16% rise in literacy levels and 22% improvement across all subjects"
+    },
+    {
+      "type": "image",
+      "src": "images/graduation-25.jpeg",
+      "title": "Graduation 2025",
+      "description": "We organised a small graduation-like ceremony to celebrate education, gifting them with personalised jerseys for their center with their name and number"
+    },
+    {
+      "type": "image",
+      "src": "images/WhatsApp Image 2026-01-27 at 6.43.06 PM.jpeg",
+      "title": "Our Journey Continues",
+      "description": "Every moment creating lasting impact and transformation"
+    },
+    {
+      "type": "video",
+      "src": "images/video-jan-14-2026-01.mp4",
+      "title": "Transformation",
+      "description": "Volunteers grew into leaders. Students grew into confident learners."
+    }
+  ],
+  "ending": {
+    "title": "Looking Ahead",
+    "subtitle": "Ready to reach more children and create even greater impact",
+    "description": "With stronger foundations and renewed energy, U&I Trivandrum moves forward. When hearts and hands come together, change truly becomes possible.",
+    "ctaButton": {
+      "text": "Support Our Mission",
+      "action": "contact"
+    },
+    "contactInfo": {
+      "email": "info@uandi.org",
+      "website": "www.ketto.org/fundraiser/Gautham-G-Ajith-for-U-and-I-Trust-1106627",
+      "message": "Join us in making a difference. Every contribution creates lasting change."
+    },
+    "auditReport": {
+      "url": "https://uandifinancehub.softr.app/",
+      "text": "View Annual Audit Report"
+    }
+  }
+}

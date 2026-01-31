@@ -1,0 +1,259 @@
+/* Reset and base */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    background: #111;
+    color: #fff;
+    overflow: hidden;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* Progress bar */
+.progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: rgba(255,255,255,0.2);
+    z-index: 10;
+}
+.progress-fill {
+    height: 100%;
+    width: 0;
+    background: #c41e3a;
+    transition: width 0.1s ease;
+}
+
+/* Slides container - main scroll */
+.slides-container {
+    position: fixed;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Each slide */
+.slide {
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Intro slide */
+.slide-intro {
+    background: linear-gradient(180deg, #c41e3a 0%, #8b1528 100%);
+    justify-content: center;
+    text-align: center;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+.intro-logo-wrap {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1rem;
+    border-radius: 50%;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+.intro-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+.intro-report-label {
+    font-size: 1.05rem;
+    opacity: 0.95;
+    margin: 0 0 0.25rem;
+}
+.intro-report-title {
+    font-size: clamp(1.75rem, 5vw, 2.5rem);
+    margin: 0 0 0.5rem;
+    font-weight: 700;
+}
+.intro-report-desc {
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    opacity: 0.9;
+    margin: 0 0 1.5rem;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.scroll-hint {
+    font-size: 1rem;
+    opacity: 0.85;
+}
+
+/* Image slide */
+.slide-image .image-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+}
+.slide-image .reel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slide-image .slide-caption {
+    position: relative;
+    padding: 1.25rem 1rem 1.5rem;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+}
+.slide-title {
+    font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+    margin: 0 0 0.35rem;
+    font-weight: 600;
+}
+.slide-description {
+    font-size: clamp(1rem, 4.5vw, 1.3rem);
+    margin: 0;
+    opacity: 0.9;
+    line-height: 1.4;
+}
+
+/* Video slide */
+.slide-video .video-container {
+    position: absolute;
+    inset: 0;
+    background: #000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.slide-video .reel-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* 9:16 mobile-friendly: show full video in portrait so landscape videos aren't badly cropped */
+@media (max-width: 768px), (orientation: portrait) {
+    .slide-video .reel-video {
+        object-fit: contain;
+    }
+}
+.slide-video .slide-caption {
+    position: relative;
+    padding: 1.25rem 1rem 1.5rem;
+    padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    background: linear-gradient(transparent, rgba(0,0,0,0.85));
+}
+
+/* Collage slide */
+.slide-collage .collage-container {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #1a1a1a;
+}
+.slide-collage .collage-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+.slide-collage .slide-caption-minimal {
+    position: relative;
+    padding: 0.75rem 1rem 1rem;
+    padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+    background: linear-gradient(transparent, rgba(0,0,0,0.8));
+}
+.slide-collage .slide-caption-minimal .slide-description {
+    font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+    margin: 0;
+    opacity: 0.95;
+}
+
+/* Ending slide */
+.slide-ending {
+    background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+    justify-content: center;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    padding-bottom: calc(2rem + env(safe-area-inset-bottom));
+}
+.ending-content .slide-title-large {
+    font-size: clamp(1.75rem, 4vw, 2.25rem);
+    margin: 0 0 0.5rem;
+    font-weight: 700;
+}
+.ending-subtitle {
+    font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+    margin: 0 0 1rem;
+    opacity: 0.9;
+}
+.ending-content .slide-description {
+    max-width: 32em;
+    margin: 0 auto 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.15rem);
+    line-height: 1.5;
+}
+.cta-button {
+    display: inline-block;
+    padding: 0.85rem 1.75rem;
+    background: #c41e3a;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+    transition: background 0.2s;
+}
+.cta-button:hover, .cta-button:focus {
+    background: #a01830;
+    color: #fff;
+}
+.cta-button-secondary {
+    background: transparent;
+    color: #fff;
+    border: 2px solid rgba(255,255,255,0.6);
+    margin-left: 0.5rem;
+}
+.cta-button-secondary:hover, .cta-button-secondary:focus {
+    background: rgba(255,255,255,0.1);
+    border-color: #fff;
+    color: #fff;
+}
+.ending-content .cta-button + .cta-button-secondary {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    display: inline-block;
+}
+.ending-message {
+    font-size: 1rem;
+    opacity: 0.85;
+    margin: 0;
+}
+
+/* Mobile touch and safe areas */
+@media (max-width: 768px) {
+    .slide {
+        min-height: 100dvh;
+    }
+    .slide-caption {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+    }
+}
