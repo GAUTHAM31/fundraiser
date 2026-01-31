@@ -38,7 +38,7 @@ function buildSlides() {
         container.appendChild(slide);
     });
 
-    const endingSlide = createEndingSlide(config.ending, slideIndex++);
+    const endingSlide = createEndingSlide(config.ending, slideIndex++, config.heading?.logo);
     container.appendChild(endingSlide);
 
     requestAnimationFrame(() => syncSlideHeights());
@@ -48,16 +48,22 @@ function createHeadingSlide(heading, index) {
     const slide = document.createElement('section');
     slide.className = 'slide slide-intro slide-year-wrap';
     slide.setAttribute('data-slide', index);
+    const bannerHtml = heading.banner
+        ? `<div class="intro-banner" style="background-image: url('${heading.banner}')"></div><div class="intro-banner-overlay"></div>`
+        : '';
     const logoHtml = heading.logo
         ? `<div class="intro-logo-wrap"><img src="${heading.logo}" alt="U&I" class="intro-logo" /></div>`
         : '';
     slide.innerHTML = `
+        ${bannerHtml}
         <div class="slide-content intro-year-wrap-content">
             ${logoHtml}
             <p class="intro-report-label">${heading.subtitle || ''}</p>
             <h1 class="slide-title-large intro-report-title">${heading.title || ''}</h1>
             ${heading.description ? `<p class="slide-description intro-report-desc">${heading.description}</p>` : ''}
-            <div class="scroll-hint">${heading.tagline || '↓ Scroll to explore'}</div>
+        </div>
+        <div class="intro-scroll-bottom" aria-hidden="true">
+            <p class="scroll-hint">${heading.tagline || 'Scroll to explore'}</p>
         </div>
     `;
     return slide;
@@ -107,7 +113,7 @@ function createVideoSlide(item, index, contentIndex) {
             if (entry.isIntersecting) entry.target.play().catch(() => {});
             else entry.target.pause();
         });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.5, rootMargin: '0px 0px -10% 0px' });
     observer.observe(video);
     return slide;
 }
@@ -126,7 +132,7 @@ function createCollageSlide(item, index, contentIndex) {
     return slide;
 }
 
-function createEndingSlide(ending, index) {
+function createEndingSlide(ending, index, logoUrl) {
     const slide = document.createElement('section');
     slide.className = 'slide slide-ending';
     slide.setAttribute('data-slide', index);
@@ -137,14 +143,23 @@ function createEndingSlide(ending, index) {
     const auditHtml = auditUrl
         ? `<a href="${auditUrl}" target="_blank" rel="noopener" class="cta-button cta-button-secondary">${audit.text || 'View Annual Audit Report'}</a>`
         : '';
+    const logoHtml = logoUrl
+        ? `<div class="ending-logo-wrap"><img src="${logoUrl}" alt="U&I" class="ending-logo" /></div>`
+        : '';
     slide.innerHTML = `
-        <div class="slide-content ending-content">
-            <h2 class="slide-title-large">${ending.title || ''}</h2>
-            <p class="ending-subtitle">${ending.subtitle || ''}</p>
-            <p class="slide-description">${ending.description || ''}</p>
-            <a href="${ctaUrl}" target="_blank" rel="noopener" class="cta-button">${ending.ctaButton?.text || 'Support Our Mission'}</a>
-            ${auditHtml}
-            <p class="ending-message">${ending.contactInfo?.message || ''}</p>
+        <div class="ending-content">
+            <div class="ending-card">
+                ${logoHtml}
+                <div class="ending-accent"></div>
+                <h2 class="ending-title">${ending.title || ''}</h2>
+                <p class="ending-subtitle">${ending.subtitle || ''}</p>
+                <p class="ending-description">${ending.description || ''}</p>
+                <div class="ending-cta-group">
+                    <a href="${ctaUrl}" target="_blank" rel="noopener" class="cta-button">${ending.ctaButton?.text || 'Support Our Mission'}</a>
+                    ${auditHtml}
+                </div>
+                <p class="ending-message">${ending.contactInfo?.message || ''}</p>
+            </div>
         </div>
     `;
     return slide;
@@ -174,7 +189,8 @@ function initializeApp() {
     syncSlideHeights();
     window.addEventListener('resize', syncSlideHeights);
 
-    // Progress bar
+    // Progress bar - RAF throttle to reduce lag, passive listener for scroll
+    let progressRaf = null;
     function updateProgress() {
         const fill = document.querySelector('.progress-fill');
         if (!fill) return;
@@ -183,7 +199,14 @@ function initializeApp() {
         const pct = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
         fill.style.width = pct + '%';
     }
-    container.addEventListener('scroll', updateProgress);
+    function onScroll() {
+        if (progressRaf != null) return;
+        progressRaf = requestAnimationFrame(function() {
+            updateProgress();
+            progressRaf = null;
+        });
+    }
+    container.addEventListener('scroll', onScroll, { passive: true });
     updateProgress();
 
     // Optional: keyboard and wheel for desktop
