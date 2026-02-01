@@ -51,6 +51,27 @@ function loadConfig() {
     }
 }
 
+var MONTH_ORDER = { Jan: 1, Feb: 2, Mar: 3, Apr: 4, May: 5, Jun: 6, Jul: 7, Aug: 8, Sep: 9, Oct: 10, Nov: 11, Dec: 12 };
+
+function sortContentByPeriod(content) {
+    if (!content || !content.length) return content;
+    return content.slice().sort(function(a, b) {
+        var pa = (a.period || a.date || '').trim();
+        var pb = (b.period || b.date || '').trim();
+        if (!pa && !pb) return 0;
+        if (!pa) return 1;
+        if (!pb) return -1;
+        var ma = pa.split(/\s+/);
+        var mb = pb.split(/\s+/);
+        var monthA = MONTH_ORDER[ma[0]] || 0;
+        var monthB = MONTH_ORDER[mb[0]] || 0;
+        var yearA = parseInt(ma[1], 10) || 0;
+        var yearB = parseInt(mb[1], 10) || 0;
+        if (yearA !== yearB) return yearA - yearB;
+        return monthA - monthB;
+    });
+}
+
 function buildSlides(donationUrl) {
     const container = document.querySelector('.slides-container');
     if (!container || !config) return;
@@ -60,7 +81,8 @@ function buildSlides(donationUrl) {
     const headingSlide = createHeadingSlide(config.heading, slideIndex++);
     container.appendChild(headingSlide);
 
-    config.content.forEach((item, index) => {
+    var content = sortContentByPeriod(config.content);
+    content.forEach((item, index) => {
         let slide;
         if (item.type === 'video') {
             slide = createVideoSlide(item, slideIndex++, index);
@@ -115,9 +137,11 @@ function createImageSlide(item, index, contentIndex) {
     img.addEventListener('load', function() { optimizeImageForMobile(this); });
     img.addEventListener('error', function() { this.style.display = 'none'; });
 
+    var periodHtml = (item.period || item.date) ? '<p class="slide-date">' + (item.period || item.date) + '</p>' : '';
     slide.innerHTML = (
         '<div class="image-container"></div>' +
         '<div class="slide-caption">' +
+            periodHtml +
             '<h2 class="slide-title">' + (item.title || '') + '</h2>' +
             (item.description ? '<p class="slide-description">' + item.description + '</p>' : '') +
         '</div>'
@@ -131,11 +155,13 @@ function createVideoSlide(item, index, contentIndex) {
     const slide = document.createElement('section');
     slide.className = 'slide slide-video';
     slide.setAttribute('data-slide', index);
+    var periodHtml = (item.period || item.date) ? '<p class="slide-date">' + (item.period || item.date) + '</p>' : '';
     slide.innerHTML = (
         '<div class="video-container">' +
             '<video class="reel-video" playsinline muted loop preload="metadata" src="' + item.src + '"></video>' +
         '</div>' +
         '<div class="slide-caption">' +
+            periodHtml +
             '<h2 class="slide-title">' + (item.title || '') + '</h2>' +
             (item.description ? '<p class="slide-description">' + item.description + '</p>' : '') +
         '</div>'
@@ -156,11 +182,12 @@ function createCollageSlide(item, index, contentIndex) {
     slide.className = 'slide slide-collage';
     slide.setAttribute('data-slide', index);
     const caption = item.caption || item.description || '';
+    var periodHtml = (item.period || item.date) ? '<p class="slide-date">' + (item.period || item.date) + '</p>' : '';
     slide.innerHTML = (
         '<div class="collage-container">' +
             '<img src="' + item.src + '" alt="' + (item.title || '') + '" class="collage-image" loading="lazy" />' +
         '</div>' +
-        (caption ? '<div class="slide-caption slide-caption-minimal"><p class="slide-description">' + caption + '</p></div>' : '')
+        (caption || periodHtml ? '<div class="slide-caption slide-caption-minimal">' + periodHtml + (caption ? '<p class="slide-description">' + caption + '</p>' : '') + '</div>' : '')
     );
     return slide;
 }
