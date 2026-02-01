@@ -76,6 +76,12 @@
     },
     {
       "type": "image",
+      "src": "images/cms-day out.JPG.jpeg",
+      "title": "Field Trip with CMS Students",
+      "description": "Field trip with students of CMS — explored the TVM Zoo and Museum, followed by a lunch picnic and a movie in the multiplex"
+    },
+    {
+      "type": "image",
       "src": "images/projector-cms.jpeg",
       "title": "Projector at CMS",
       "description": "Helping students learn with multimedia and screening English movies"
