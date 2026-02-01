@@ -48,7 +48,7 @@ body {
     min-height: 100vh;
     min-height: 100dvh;
     scroll-snap-align: start;
-    scroll-snap-stop: always;
+    scroll-snap-stop: normal;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -374,12 +374,5 @@ body {
     .ending-cta-group {
         flex-direction: column;
         gap: 0.65rem;
-    }
-    /* Reduce scroll lag on Chrome mobile when scrolling backwards */
-    .slides-container {
-        scroll-snap-type: y proximity;
-    }
-    .slide {
-        scroll-snap-stop: normal;
     }
 }

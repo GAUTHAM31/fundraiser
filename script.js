@@ -188,6 +188,10 @@ function initializeApp() {
 
     syncSlideHeights();
     window.addEventListener('resize', syncSlideHeights);
+    var resizeObserver = new ResizeObserver(function() {
+        syncSlideHeights();
+    });
+    resizeObserver.observe(container);
 
     // Progress bar - RAF throttle to reduce lag, passive listener for scroll
     let progressRaf = null;
