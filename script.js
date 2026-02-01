@@ -263,6 +263,43 @@ function initializeApp() {
     });
 }
 
+function startBackgroundMusic() {
+    var audio = document.getElementById('bg-music');
+    if (!audio) return;
+    audio.volume = 0.25;
+    audio.play().catch(function() {});
+}
+
+function initMuteButton() {
+    var audio = document.getElementById('bg-music');
+    var btn = document.getElementById('mute-btn');
+    if (!audio || !btn) return;
+
+    function updateMuteState() {
+        var isMuted = audio.muted;
+        btn.setAttribute('aria-label', isMuted ? 'Unmute music' : 'Mute music');
+        btn.setAttribute('aria-pressed', isMuted ? 'true' : 'false');
+        btn.classList.toggle('is-muted', isMuted);
+    }
+
+    btn.addEventListener('click', function() {
+        audio.muted = !audio.muted;
+        updateMuteState();
+    });
+
+    audio.addEventListener('volumechange', updateMuteState);
+    updateMuteState();
+}
+
+document.addEventListener('click', startBackgroundMusic, { once: true });
+document.addEventListener('touchstart', startBackgroundMusic, { once: true });
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMuteButton);
+} else {
+    initMuteButton();
+}
+
 // Start
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', loadConfig);
