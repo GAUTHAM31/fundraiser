@@ -124,6 +124,12 @@
     },
     {
       "type": "image",
+      "src": "images/science-fair.jpeg",
+      "title": "Science Fair — Coming Soon",
+      "description": "An upcoming event that gives a gateway to learn and have fun with science knowledge"
+    },
+    {
+      "type": "image",
       "src": "images/activity-nov-16-2025-03.jpeg",
       "title": "Interactive Learning",
       "description": "Introduced fun knowledge games to make learning exciting and engaging"

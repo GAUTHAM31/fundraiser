@@ -85,6 +85,9 @@ body {
     justify-content: center;
     max-width: 90%;
 }
+.intro-year-wrap-content {
+    margin-inline-start: 0.75rem;
+}
 .intro-logo-wrap {
     width: 80px;
     height: 80px;
