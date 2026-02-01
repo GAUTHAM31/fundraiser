@@ -7,24 +7,61 @@ function getCampaignerFromUrl() {
     return id || null;
 }
 
-var DEFAULT_CAMPAIGNER_ID = 'gautham-g-ajith';
+var DEFAULT_CAMPAIGNER_ID = 'gautham';
+
+var BASE_TITLE = 'U&I Trivandrum | 2025–2026 Impact';
+var BASE_OG_TITLE = 'U&I Trivandrum | 2025–2026 Impact Report';
+var BASE_DESCRIPTION = 'U&I Trivandrum 2025–2026: A journey of expansion, impact and transformation. 4 centers, 140+ students, 151 volunteers. 21.16% rise in literacy. When hearts and hands come together, change is possible.';
+
+function updateCampaignerMetadata(campaignerName) {
+    var title = 'Support ' + campaignerName + ' | U&I Impact';
+    var desc = 'Support ' + campaignerName + '\'s fundraiser for U&I Trivandrum. ' + BASE_DESCRIPTION;
+    document.title = title;
+    var ogTitle = document.querySelector('meta[property="og:title"]');
+    var ogDesc = document.querySelector('meta[property="og:description"]');
+    var twTitle = document.querySelector('meta[name="twitter:title"]');
+    var twDesc = document.querySelector('meta[name="twitter:description"]');
+    var metaDesc = document.querySelector('meta[name="description"]');
+    if (ogTitle) ogTitle.setAttribute('content', title);
+    if (ogDesc) ogDesc.setAttribute('content', desc);
+    if (twTitle) twTitle.setAttribute('content', title);
+    if (twDesc) twDesc.setAttribute('content', desc);
+    if (metaDesc) metaDesc.setAttribute('content', desc);
+    var ogUrl = document.querySelector('meta[property="og:url"]');
+    if (ogUrl && window.location.href && window.location.href.indexOf('?') !== -1) {
+        ogUrl.setAttribute('content', window.location.href);
+    }
+}
+
+function findCampaigner(campaigners, id) {
+    if (!campaigners || !id) return null;
+    var c = campaigners[id];
+    if (c && c.donationUrl) return c;
+    var fallback = id.split('-')[0];
+    if (fallback !== id) {
+        c = campaigners[fallback];
+        if (c && c.donationUrl) return c;
+    }
+    return null;
+}
 
 function resolveDonationUrl(defaultUrl, callback) {
     var campaignerId = getCampaignerFromUrl() || DEFAULT_CAMPAIGNER_ID;
 
     if (window.location.protocol === 'file:') {
-        callback(defaultUrl);
+        callback(defaultUrl, null);
         return;
     }
 
     fetch('campaigners.json')
         .then(function(res) { return res.ok ? res.json() : Promise.reject(); })
         .then(function(campaigners) {
-            var c = campaigners[campaignerId];
-            callback(c && c.donationUrl ? c.donationUrl : defaultUrl);
+            var c = findCampaigner(campaigners, campaignerId);
+            var url = c && c.donationUrl ? c.donationUrl : defaultUrl;
+            callback(url, c || null);
         })
         .catch(function() {
-            callback(defaultUrl);
+            callback(defaultUrl, null);
         });
 }
 
@@ -38,7 +75,10 @@ function loadConfig() {
                     ? config.ending.contactInfo.website
                     : 'https://' + config.ending.contactInfo.website.replace(/^www\./, 'www.'))
                 : '';
-            resolveDonationUrl(defaultDonationUrl, function(donationUrl) {
+            resolveDonationUrl(defaultDonationUrl, function(donationUrl, campaigner) {
+                if (campaigner && campaigner.name) {
+                    updateCampaignerMetadata(campaigner.name);
+                }
                 buildSlides(donationUrl);
                 initializeApp();
             });
